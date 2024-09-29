@@ -78,7 +78,7 @@ include_once('function.php');
                             <td><?= $tamu['kepentingan'] ?></td>
                             <td>
                                 <a href="edit-tamu.php?id=<?= $tamu['id_tamu']?>" class="btn btn-success">Ubah</a>
-                                <button class="btn btn-danger" type="button">Hapus</button>
+                                <a href="hapus-tamu.php?id=<?= $tamu['id_tamu']?>" onclick="confirm('apakah anda yakin ingin menghapus data ini?')" class="btn btn-danger">Hapus</a>
                             </td>
                         </tr>
                         <?php endforeach; ?>
