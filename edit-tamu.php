@@ -84,7 +84,7 @@ include_once('function.php')
                     <label for="" class="col-sm-3 col-form-label"></label>
                     <div class="col-sm-8 d-flex justify-content-end">
                         <div>
-                            <a href="buku-tamu.php" class="btn btn-danger btn-icon-split" type="button">
+                            <a type="button" class="btn btn-danger btn-icon-split" href="buku_tamu.php" >
                                 <span class="icon text-white-50">
                                     <i class="fas fa-chevron-left"></i>
                                 </span>

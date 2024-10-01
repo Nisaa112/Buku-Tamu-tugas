@@ -46,7 +46,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="index.html">
+                <a class="nav-link" href="index.php">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -56,12 +56,12 @@
                     <span>Buku Tamu</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="laporan.html">
+                <a class="nav-link" href="laporan.php">
                     <i class="fas fa-fw fa-file-alt"></i>
                     <span>Laporan</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="user.html">
+                <a class="nav-link" href="users.php">
                     <i class="fas fa-fw fa-users"></i>
                     <span>User</span></a>
             </li>
