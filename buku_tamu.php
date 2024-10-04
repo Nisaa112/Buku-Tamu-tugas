@@ -2,6 +2,24 @@
 include_once('templates/header.php');
 include_once('function.php');
 
+if (isset($_SESSION['role'])) {
+    if ($_SESSION['role'] == 'operator') {
+?>
+        <div class="alert alert-danger" role="alert">
+            Selamat datang
+        </div>
+    <?php
+
+    } else {
+    ?>
+        <div class="alert alert-danger" role="alert">
+            Anda tidak menmiliki akses
+        </div>
+<?php
+        exit;
+    }
+}
+
 ?>
 
 <!-- begin page content -->
@@ -17,7 +35,7 @@ include_once('function.php');
     if (isset($_POST['simpan'])) {
         if (tambah_tamu($_POST) > 0) {
 
-    ?>  
+    ?>
             <div class="alert alert-success" role="alert">
                 Data berhasil disimpan!
             </div>
@@ -28,12 +46,12 @@ include_once('function.php');
                 Data gagal disimpan!
             </div>
     <?php
-        } 
-    }       
+        }
+    }
     ?>
-     
 
-   
+
+
 
 
     <!-- DataTales Example -->
@@ -68,19 +86,19 @@ include_once('function.php');
                         // query untuk memanggil semua data  dari tabel buku_tamu
                         $buku_tamu =  query("SELECT * FROM  buku_tamu");
                         foreach ($buku_tamu as $tamu) : ?>
-                        <tr>
-                            <td><?= $no++; ?></td>
-                            <td><?= $tamu['tanggal'] ?></td>
-                            <td><?= $tamu['nama_tamu'] ?></td>
-                            <td><?= $tamu['alamat'] ?></td>
-                            <td><?= $tamu['no_hp'] ?></td>
-                            <td><?= $tamu['bertemu'] ?></td>
-                            <td><?= $tamu['kepentingan'] ?></td>
-                            <td>
-                                <a href="edit-tamu.php?id=<?= $tamu['id_tamu']?>" class="btn btn-success">Ubah</a>
-                                <a href="hapus-tamu.php?id=<?= $tamu['id_tamu']?>" onclick="confirm('apakah anda yakin ingin menghapus data ini?')" class="btn btn-danger">Hapus</a>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td><?= $no++; ?></td>
+                                <td><?= $tamu['tanggal'] ?></td>
+                                <td><?= $tamu['nama_tamu'] ?></td>
+                                <td><?= $tamu['alamat'] ?></td>
+                                <td><?= $tamu['no_hp'] ?></td>
+                                <td><?= $tamu['bertemu'] ?></td>
+                                <td><?= $tamu['kepentingan'] ?></td>
+                                <td>
+                                    <a href="edit-tamu.php?id=<?= $tamu['id_tamu'] ?>" class="btn btn-success">Ubah</a>
+                                    <a href="hapus-tamu.php?id=<?= $tamu['id_tamu'] ?>" onclick="confirm('apakah anda yakin ingin menghapus data ini?')" class="btn btn-danger">Hapus</a>
+                                </td>
+                            </tr>
                         <?php endforeach; ?>
                     </tbody>
                 </table>
@@ -120,7 +138,7 @@ $kodeTamu = $huruf . sprintf("%02s", $urutan);
             </div>
             <div class="modal-body">
                 <form action="" method="post">
-                    <input type="hidden" name="id_tamu" id="id_tamu" value="<?=$kodeTamu?>">
+                    <input type="hidden" name="id_tamu" id="id_tamu" value="<?= $kodeTamu ?>">
                     <div class="form-grup row">
                         <label for="nama_tamu" class="col-sm-3 col-form-label">Nama Tamu</label>
                         <div class="col-sm-8">
@@ -151,13 +169,13 @@ $kodeTamu = $huruf . sprintf("%02s", $urutan);
                             <input type="text" class="form-control" id="kepentingan" name="kepentingan">
                         </div>
                     </div>
-                
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-                        <button type="submit" name="simpan" class="btn btn-primary">simpan</button>
-                    </div>
-                </form>
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="submit" name="simpan" class="btn btn-primary">simpan</button>
+            </div>
+            </form>
         </div>
     </div>
 </div>

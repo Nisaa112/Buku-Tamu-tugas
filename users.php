@@ -2,6 +2,22 @@
 include_once('templates/header.php');
 include_once('function.php');
 
+if ($_SESSION['role'] == 'admin') {
+?>
+    <div class="alert alert-danger" role="alert">
+        Selamat datang
+    </div>
+<?php
+
+} else {
+?>
+    <div class="alert alert-danger" role="alert">
+        Anda tidak menmiliki akses
+    </div>
+<?php
+    exit;
+}
+
 ?>
 
 <!-- begin page content -->
@@ -17,7 +33,7 @@ include_once('function.php');
     if (isset($_POST['simpan'])) {
         if (tambah_user($_POST) > 0) {
 
-    ?>  
+    ?>
             <div class="alert alert-success" role="alert">
                 Data berhasil disimpan!
             </div>
@@ -28,12 +44,12 @@ include_once('function.php');
                 Data gagal disimpan!
             </div>
     <?php
-        } 
-    }       
+        }
+    }
     ?>
-     
 
-   
+
+
 
 
     <!-- DataTales Example -->
@@ -64,18 +80,18 @@ include_once('function.php');
                         // query untuk memanggil semua data  dari tabel buku_user
                         $users =  query("SELECT * FROM  users");
                         foreach ($users as $user) : ?>
-                        <tr>
-                            <td><?= $no++; ?></td>
-                            <td><?= $user['username'] ?></td>
-                            <td><?= $user['user_role'] ?></td>
-                            <td>
-                                <button class="btn btn-info btn-icon-split" type="button" data-toggle="modal" data-target="#gantiPassword" data-id="<?= $user['id_users']?>">
-                                    <span class="text">Ganti Password</span>                            
-                                </button>
-                                <a href="edit-user.php?id=<?= $user['id_users']?>" class="btn btn-success">Ubah</a>
-                                <a href="hapus-user.php?id=<?= $user['id_users']?>" onclick="confirm('apakah anda yakin ingin menghapus data ini?')" class="btn btn-danger">Hapus</a>
-                            </td>
-                        </tr>
+                            <tr>
+                                <td><?= $no++; ?></td>
+                                <td><?= $user['username'] ?></td>
+                                <td><?= $user['user_role'] ?></td>
+                                <td>
+                                    <button class="btn btn-info btn-icon-split" type="button" data-toggle="modal" data-target="#gantiPassword" data-id="<?= $user['id_users'] ?>">
+                                        <span class="text">Ganti Password</span>
+                                    </button>
+                                    <a href="edit-user.php?id=<?= $user['id_users'] ?>" class="btn btn-success">Ubah</a>
+                                    <a href="hapus-user.php?id=<?= $user['id_users'] ?>" onclick="confirm('apakah anda yakin ingin menghapus data ini?')" class="btn btn-danger">Hapus</a>
+                                </td>
+                            </tr>
                         <?php endforeach; ?>
                     </tbody>
                 </table>
@@ -115,7 +131,7 @@ $kodeuser = $huruf . sprintf("%02s", $urutan);
             </div>
             <div class="modal-body">
                 <form action="" method="post">
-                    <input type="hidden" name="id_users" id="id_users" value="<?=$kodeuser?>">
+                    <input type="hidden" name="id_users" id="id_users" value="<?= $kodeuser ?>">
                     <div class="form-grup row">
                         <label for="username" class="col-sm-3 col-form-label">Username</label>
                         <div class="col-sm-8">
@@ -138,12 +154,12 @@ $kodeuser = $huruf . sprintf("%02s", $urutan);
                         </div>
                     </div>
 
-                    </div>
-                    <div class="modal-footer">
-                        <button type="button" class="btn btn-secondary" data-dismiss="modal">keluar</button>
-                        <button type="submit" name="simpan" class="btn btn-primary">simpan</button>
-                    </div>
-                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">keluar</button>
+                <button type="submit" name="simpan" class="btn btn-primary">simpan</button>
+            </div>
+            </form>
         </div>
     </div>
 </div>
@@ -167,12 +183,12 @@ $kodeuser = $huruf . sprintf("%02s", $urutan);
                             <input type="password" class="form-control" id="password" name="password">
                         </div>
                     </div>
-            </div>    
+            </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Keluar</button>
                 <button type="submit" class="btn btn-primary" name="ganti_password">Simpan</button>
-            </div>                
-            </form> 
+            </div>
+            </form>
         </div>
     </div>
 </div>

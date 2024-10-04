@@ -1,3 +1,13 @@
+<?php
+// memulai session
+session_start();
+
+// cek bila tidak ada user yang login maka akan di redirect ke halaman login
+if(!isset($_SESSION['login'])) {
+    header('location: login.php');
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -43,6 +53,18 @@
 
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
+
+            <?php
+            // cek apabila ada user login maka tampilkan logout
+            if(isset($_SESSION['login'])) :
+            ?>
+            <li class="nav-item">
+                <a href="logout.php" class="nav-link">
+                    <i class="fas fa-fw fa-power-off"></i>
+                    <span>Logout</span>
+                </a>
+            </li>
+            <?php endif?>
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">

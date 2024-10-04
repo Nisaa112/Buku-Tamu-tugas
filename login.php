@@ -1,4 +1,14 @@
 <?php
+// memulai session
+session_start();
+
+// cek bila ada user yang sudah login maka akan redirect ke halaman dashboard
+if(isset($_SESSION['login'])) {
+    header('Location: index.php');
+}
+
+
+
 require 'koneksi.php';
 if (isset($_POST['login'])) {
     $username = $_POST['username'];
@@ -13,6 +23,11 @@ if (isset($_POST['login'])) {
         $row = mysqli_fetch_assoc($result);
 
         if(password_verify($password, $row['password'])) {
+
+            // set session
+            $_SESSION['login'] = true;
+            $_SESSION['username'] = $username;
+            $_SESSION['role'] = $row['user_role'];
 
             // login berhasil
             header("Location: index.php");
@@ -71,7 +86,7 @@ if (isset($_POST['login'])) {
                         <!-- Nested Row within Card Body -->
                         <div class="row">
                             <div class="col-lg-6 d-none d-lg-block bg-login-image">
-                                <img src="assets/images/login-page.png" alt="">
+                                <img src="assets/image/login.png" style="width: 500px; ">
                             </div>
                             <div class="col-lg-6">
                                 <div class="p-5">
